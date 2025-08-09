@@ -1,0 +1,1500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriVision Egypt - Transforming Agriculture Through Technology</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-green: #2e7d32;
+            --light-green: #81c784;
+            --dark-green: #1b5e20;
+            --earth-brown: #795548;
+            --light-brown: #a1887f;
+            --sky-blue: #81d4fa;
+            --accent-orange: #ff9800;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1464226184884-fa280b87c399?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 120px 0;
+            text-align: center;
+        }
+        
+        .hero-section h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero-section p {
+            font-size: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        .btn-agri {
+            background-color: var(--primary-green);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-agri:hover {
+            background-color: var(--dark-green);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section-title {
+            color: var(--primary-green);
+            font-weight: 700;
+            margin-bottom: 40px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent-orange);
+        }
+        
+        .navbar {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            color: var(--primary-green) !important;
+            font-size: 1.5rem;
+        }
+        
+        .nav-link {
+            color: #333 !important;
+            font-weight: 500;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary-green) !important;
+        }
+        
+        .feature-card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--primary-green);
+            margin-bottom: 20px;
+        }
+        
+        .stat-card {
+            background-color: var(--light-green);
+            color: white;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            background-color: var(--primary-green);
+            transform: scale(1.05);
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 2px;
+            height: 100%;
+            background-color: var(--light-green);
+        }
+        
+        .timeline-item {
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .timeline-content {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            width: 45%;
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-left: auto;
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: var(--primary-green);
+            transform: translateX(-50%);
+            border: 4px solid white;
+            box-shadow: 0 0 0 2px var(--light-green);
+        }
+        
+        .tech-card {
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--primary-green);
+        }
+        
+        .pricing-card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .pricing-card.featured {
+            border: 2px solid var(--accent-orange);
+            transform: scale(1.05);
+        }
+        
+        .pricing-card.featured::before {
+            content: 'MOST POPULAR';
+            position: absolute;
+            top: 15px;
+            right: -35px;
+            background-color: var(--accent-orange);
+            color: white;
+            padding: 5px 40px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            transform: rotate(45deg);
+        }
+        
+        .price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-green);
+        }
+        
+        .price span {
+            font-size: 1rem;
+            color: #666;
+        }
+        
+        .team-member {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .team-member img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 4px solid var(--light-green);
+        }
+        
+        .team-member h5 {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .team-member p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .risk-meter {
+            height: 20px;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+        
+        .risk-level {
+            height: 100%;
+            border-radius: 10px;
+        }
+        
+        .risk-low {
+            width: 33%;
+            background-color: #4caf50;
+        }
+        
+        .risk-medium {
+            width: 66%;
+            background-color: #ff9800;
+        }
+        
+        .risk-high {
+            width: 100%;
+            background-color: #f44336;
+        }
+        
+        .footer {
+            background-color: var(--dark-green);
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer h5 {
+            font-weight: 600;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer h5::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--accent-orange);
+        }
+        
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .social-icons a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            text-align: center;
+            line-height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--accent-orange);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 30px;
+            padding-top: 20px;
+            text-align: center;
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+        
+        .chart-container {
+            position: relative;
+            height: 300px;
+            margin-bottom: 30px;
+        }
+        
+        .accordion-button:not(.collapsed) {
+            background-color: var(--light-green);
+            color: white;
+        }
+        
+        .accordion-button:focus {
+            box-shadow: none;
+            border-color: rgba(0,0,0,.125);
+        }
+        
+        @media (max-width: 768px) {
+            .hero-section h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-section p {
+                font-size: 1.2rem;
+            }
+            
+            .timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-content {
+                width: calc(100% - 60px);
+                margin-left: 60px !important;
+            }
+            
+            .timeline-dot {
+                left: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#"><i class="fas fa-seedling"></i> AgriVision Egypt</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#overview">Overview</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#market">Market</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#technology">Technology</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#roadmap">Roadmap</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#financials">Financials</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="container">
+            <h1 data-aos="fade-up">AgriVision Egypt</h1>
+            <p data-aos="fade-up" data-aos-delay="100">Transforming Egyptian Agriculture Through Integrated Aerial-to-Ground Intelligence</p>
+            <a href="#overview" class="btn btn-agri" data-aos="fade-up" data-aos-delay="200">Explore Our Vision</a>
+        </div>
+    </section>
+
+    <!-- Key Stats -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="stat-card">
+                        <div class="stat-number">30-50%</div>
+                        <p>Water Reduction</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="stat-card">
+                        <div class="stat-number">10-20%</div>
+                        <p>Crop Yield Increase</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="stat-card">
+                        <div class="stat-number">$6.28B</div>
+                        <p>Egyptian AgriTech Market by 2030</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="stat-card">
+                        <div class="stat-number">22</div>
+                        <p>Months to Break-even</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Executive Summary -->
+    <section id="overview" class="py-5">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Executive Summary</h2>
+            <div class="row">
+                <div class="col-lg-8" data-aos="fade-right">
+                    <p>AgriVision Egypt is a transformative agricultural technology company founded to address Egypt's intertwined challenges of water scarcity and food security. As an Egyptian Limited Liability Company (LLC) established in 2025, we are engineering the nation's premier integrated "aerial-to-ground" platform, synergizing advanced drone technology with intelligent ground systems and a sophisticated AI analytics engine.</p>
+                    <p>Our core mission is to empower Egyptian agriculture—a sector contributing 11-15% to GDP and employing up to a quarter of the workforce—to thrive amidst a projected water deficit. Our platform is designed to provide farmers with clear, actionable intelligence, enabling a reduction in water consumption by 30-50% while increasing crop yields by 10-20%.</p>
+                    <p>The Egyptian AgriTech market is projected to reach USD 6.28 billion by 2030. AgriVision Egypt is strategically positioned to capture a significant share of this market by initially targeting large commercial farms, over 5,400 agricultural cooperatives, and large-scale government reclamation projects.</p>
+                    <div class="alert alert-success mt-4" role="alert">
+                        <i class="fas fa-lightbulb me-2"></i> We are seeking an initial investment of <strong>$5 million</strong> to finalize technology development, execute pilot programs, and launch commercially. Our robust financial model projects revenues of <strong>$15 million by Year 3</strong> and <strong>$50 million by Year 5</strong>.
+                    </div>
+                </div>
+                <div class="col-lg-4" data-aos="fade-left">
+                    <div class="card feature-card">
+                        <div class="card-body">
+                            <div class="feature-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h5>Financial Highlights</h5>
+                            <ul class="list-unstyled">
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> Break-even by Month 22</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> $15M revenue by Year 3</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> $50M revenue by Year 5</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i> 75% gross margin by Year 5</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Company Overview -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Company Overview</h2>
+            <div class="row">
+                <div class="col-md-6" data-aos="fade-right">
+                    <div class="tech-card">
+                        <h5><i class="fas fa-building me-2"></i> Company Details</h5>
+                        <p><strong>Legal Structure:</strong> Limited Liability Company (LLC), registered under Egyptian Law.</p>
+                        <p><strong>Headquarters:</strong> Cairo Technology Park.</p>
+                        <p><strong>Regional Hubs:</strong> Planned centers in Tanta (Nile Delta), Assiut (Upper Egypt), and Alexandria (Western Desert).</p>
+                    </div>
+                    <div class="tech-card">
+                        <h5><i class="fas fa-bullseye me-2"></i> Mission & Values</h5>
+                        <p><strong>Mission:</strong> To empower Egyptian farmers with an integrated, intelligent, and accessible precision agriculture platform that dramatically improves water efficiency, maximizes crop yields, and ensures sustainable profitability.</p>
+                        <p><strong>Core Values:</strong> Innovation, Sustainability, Accessibility, Impact, and Integrity.</p>
+                    </div>
+                </div>
+                <div class="col-md-6" data-aos="fade-left">
+                    <div class="tech-card">
+                        <h5><i class="fas fa-sitemap me-2"></i> Ownership Structure</h5>
+                        <div class="chart-container">
+                            <canvas id="ownershipChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="tech-card">
+                        <h5><i class="fas fa-users me-2"></i> Management & Advisory</h5>
+                        <p>Our leadership team combines deep expertise in agricultural technology, machine learning, and Egyptian agribusiness operations. The team is supported by a world-class advisory board comprising leading academics and industry veterans from Cairo University, John Deere, Stanford University, and the Ministry of Water Resources.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Market Analysis -->
+    <section id="market" class="py-5">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Market Analysis</h2>
+            <div class="row">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <p>Egypt's agricultural sector is fundamental to its economy but operates under immense pressure. With 99% of its cultivated land requiring irrigation drawn predominantly from a strained Nile River, the imperative for water efficiency is absolute. The government's allocation of EGP 116.6 billion to the sector (FY2023/24) and mega-projects like the "Future of Egypt" signal a national commitment to modernizing agriculture, creating a fertile ground for technological adoption.</p>
+                    
+                    <div class="alert alert-info mt-3">
+                        <h5><i class="fas fa-chart-pie me-2"></i> Market Size</h5>
+                        <p>The Egyptian AgriTech market is poised for significant expansion, projected to reach <strong>USD 6.28 billion by 2030</strong>.</p>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="chart-container">
+                        <canvas id="marketGrowthChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            
+            <h4 class="mt-5 mb-4" data-aos="fade-up">Target Segments</h4>
+            <div class="row">
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card feature-card h-100">
+                        <div class="card-body">
+                            <div class="feature-icon">
+                                <i class="fas fa-industry"></i>
+                            </div>
+                            <h5>Large Commercial Farms</h5>
+                            <p>Enterprises managing hundreds of hectares, focused on high-value crops for export and domestic markets. They are early technology adopters seeking operational efficiencies.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card feature-card h-100">
+                        <div class="card-body">
+                            <div class="feature-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h5>Agricultural Cooperatives</h5>
+                            <p>Over 5,400 cooperatives provide a strategic gateway to a vast number of small and medium-sized farms through centralized management.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card feature-card h-100">
+                        <div class="card-body">
+                            <div class="feature-icon">
+                                <i class="fas fa-landmark"></i>
+                            </div>
+                            <h5>Government Mega-Projects</h5>
+                            <p>Initiatives to reclaim millions of acres of desert represent multi-million-dollar, multi-year contracts for large-scale technology deployment.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Competitive Landscape -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Competitive Landscape & Advantage</h2>
+            <div class="row">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <h4 class="mb-3">Competitors</h4>
+                    <div class="accordion" id="competitorAccordion">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingLocal">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseLocal">
+                                    Local Competitors (e.g., Zr3i, FreshSource)
+                                </button>
+                            </h2>
+                            <div id="collapseLocal" class="accordion-collapse collapse show" data-bs-parent="#competitorAccordion">
+                                <div class="accordion-body">
+                                    Primarily offer standalone services like satellite monitoring or supply chain management. They lack the high-resolution, multi-source data and integrated control capabilities of AgriVision's platform.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingInternational">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInternational">
+                                    International Competitors (e.g., John Deere, Trimble)
+                                </button>
+                            </h2>
+                            <div id="collapseInternational" class="accordion-collapse collapse" data-bs-parent="#competitorAccordion">
+                                <div class="accordion-body">
+                                    Provide advanced technology but at prohibitive costs for most of the Egyptian market. Their solutions lack the hyper-localized AI models, on-the-ground support, and data frameworks necessary for Egypt's unique agronomic conditions.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <h4 class="mb-3">AgriVision's Definitive Competitive Advantage</h4>
+                    <div class="tech-card">
+                        <h5><i class="fas fa-puzzle-piece me-2"></i> Fully Integrated System</h5>
+                        <p>We are the only provider in Egypt offering a closed-loop solution, from data acquisition (drones, sensors) to insight generation (AI) and action (automated irrigation control).</p>
+                    </div>
+                    <div class="tech-card">
+                        <h5><i class="fas fa-map-marked-alt me-2"></i> Hyper-Localized Intelligence</h5>
+                        <p>Our AI models are not generic; they are meticulously trained and validated on Egyptian crops (wheat, rice, tomatoes), soil types, and climate patterns, delivering unparalleled accuracy.</p>
+                    </div>
+                    <div class="tech-card">
+                        <h5><i class="fas fa-lightbulb me-2"></i> Actionable Recommendations</h5>
+                        <p>We translate complex data into simple, direct instructions (e.g., "Pest alert in Zone C," "Reduce irrigation in Zone A by 15%"). This focus on usability makes advanced technology accessible to all farmers.</p>
+                    </div>
+                    <div class="tech-card">
+                        <h5><i class="fas fa-chart-line me-2"></i> Scalable Business Model</h5>
+                        <p>Our tiered pricing and diverse service models (subscription, HaaS, DaaS) allow us to serve the entire spectrum of the agricultural market, from small cooperatives to massive state-led projects.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Architecture -->
+    <section id="technology" class="py-5">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Technical Architecture</h2>
+            <p class="mb-5" data-aos="fade-up">Our platform is an end-to-end ecosystem engineered for robustness, scalability, and precision in harsh Egyptian environments.</p>
+            
+            <div class="row mb-5">
+                <div class="col-12" data-aos="fade-up">
+                    <div class="card feature-card">
+                        <div class="card-body">
+                            <h5><i class="fas fa-sitemap me-2"></i> System Overview</h5>
+                            <p>The architecture consists of four interconnected layers, ensuring seamless data flow from the field to the cloud and back to automated control systems.</p>
+                            <div class="text-center my-4">
+                                <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" class="img-fluid rounded" alt="System Architecture">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-6 mb-4" data-aos="fade-right">
+                    <div class="tech-card">
+                        <h5><i class="fas fa-helicopter me-2"></i> Aerial Intelligence Layer</h5>
+                        <p>This layer provides high-resolution, multi-modal imagery.</p>
+                        <h6>Primary Drone Fleet: DJI Agras T30</h6>
+                        <ul>
+                            <li>40-minute flight time</li>
+                            <li>30 kg payload</li>
+                            <li>RTK positioning for ±1 cm accuracy</li>
+                            <li>IP67 rating</li>
+                        </ul>
+                        <h6>Custom Modifications for Egypt:</h6>
+                        <ul>
+                            <li>Enhanced Cooling: Custom aluminum heat sinks and high-flow fans to operate in temperatures exceeding 40°C.</li>
+                            <li>Dust Protection: HEPA filters and silicone seals to protect sensitive electronics in desert environments.</li>
+                            <li>Battery Management: Temperature-controlled cases to maintain optimal battery performance (18–25°C).</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4" data-aos="fade-left">
+                    <div class="tech-card">
+                        <h5><i class="fas fa-microchip me-2"></i> Ground Intelligence Layer</h5>
+                        <p>This layer provides continuous, in-situ measurements.</p>
+                        <h6>IoT Sensor Network:</h6>
+                        <ul>
+                            <li>Soil Moisture: Decagon EC-5 capacitance sensors deployed at multiple depths (10, 20, 30, 50 cm)</li>
+                            <li>Nutrient & pH: Ion-Selective Electrode (ISE) sensors measure critical nutrients (Nitrate, Potassium, Phosphate) and pH levels.</li>
+                            <li>Weather Stations: Davis Vantage Pro2 units capture research-grade data on temperature, humidity, wind, and solar radiation.</li>
+                        </ul>
+                        <h6>Edge Computing Nodes:</h6>
+                        <ul>
+                            <li>Hardware: Raspberry Pi 4 (4GB RAM) with 1TB SSD storage, enclosed in IP65-rated housing</li>
+                            <li>Software: Nodes run Raspberry Pi OS with Docker, performing local data validation, aggregation, and compression before transmission.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4" data-aos="fade-right">
+                    <div class="tech-card">
+                        <h5><i class="fas fa-broadcast-tower me-2"></i> Communication Layer</h5>
+                        <p>This layer ensures reliable, redundant connectivity.</p>
+                        <h6>Primary Network (Cellular):</h6>
+                        <p>Multi-SIM routers bond connections from Etisalat, Vodafone, and Orange for high-availability 4G/5G service across 85% of agricultural lands.</p>
+                        <h6>Backup Network (Satellite):</h6>
+                        <p>An Iridium link provides low-bandwidth connectivity for critical alerts and data transmission if cellular service fails.</p>
+                        <h6>Local Area Network (LoRaWAN):</h6>
+                        <p>Operates on the 868 MHz band, providing up to 15 km range for low-power sensors, enabling 5-10 years of battery life.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4" data-aos="fade-left">
+                    <div class="tech-card">
+                        <h5><i class="fas fa-cloud me-2"></i> Cloud Platform Layer</h5>
+                        <p>Hosted on Amazon Web Services (AWS) in the Middle East (Bahrain) region with edge locations in Egypt.</p>
+                        <h6>Infrastructure:</h6>
+                        <p>Built within a Virtual Private Cloud (VPC), using EC2 for compute, S3 for object storage, RDS (PostgreSQL) for relational data, DynamoDB and Timestream for time-series data.</p>
+                        <h6>Data Processing Pipeline:</h6>
+                        <ul>
+                            <li>Ingestion: Data streams from edge nodes and drones are ingested via AWS Kinesis.</li>
+                            <li>Processing: AWS Glue for batch ETL jobs, Kinesis Data Analytics for real-time streams, and AWS Step Functions to orchestrate workflows.</li>
+                            <li>Storage & Analytics: Raw and processed data is stored in a tiered S3 data lake, with metadata cataloged in Glue. AWS SageMaker is used for all AI/ML processes.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI/ML Development Strategy -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">AI/ML Development Strategy</h2>
+            <p class="mb-5" data-aos="fade-up">Our core intellectual property resides in our hyper-localized AI models.</p>
+            
+            <div class="row mb-5">
+                <div class="col-md-6" data-aos="fade-right">
+                    <div class="tech-card">
+                        <h5><i class="fas fa-database me-2"></i> Data Collection & Preprocessing</h5>
+                        <p>High-quality, localized data is the foundation of our AI.</p>
+                        <h6>Data Sourcing:</h6>
+                        <p>We will collect 100,000+ multispectral images and millions of sensor data points from our 10 initial research farms and subsequent pilot sites across the Nile Delta and Upper Egypt. Datasets will cover key crops (wheat, rice, cotton, tomatoes) across varied conditions.</p>
+                        <h6>Preprocessing Pipeline:</h6>
+                        <p>Includes radiometric calibration, atmospheric correction (using the 6S model), and geometric orthorectification. Data augmentation techniques (rotation, scaling, noise injection) are used to create robust training sets.</p>
+                    </div>
+                </div>
+                <div class="col-md-6" data-aos="fade-left">
+                    <div class="tech-card">
+                        <h5><i class="fas fa-brain me-2"></i> Core AI Model Architectures</h5>
+                        <p>Each model is specifically designed to solve a critical agricultural problem.</p>
+                        
+                        <div class="chart-container mt-3">
+                            <canvas id="aiModelsChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-12" data-aos="fade-up">
+                    <div class="card feature-card">
+                        <div class="card-body">
+                            <h5><i class="fas fa-cogs me-2"></i> Model Training, Deployment & Monitoring (MLOps)</h5>
+                            <p>We employ a sophisticated MLOps pipeline using AWS SageMaker.</p>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="text-center p-3">
+                                        <div class="feature-icon">
+                                            <i class="fas fa-graduation-cap"></i>
+                                        </div>
+                                        <h6>Training</h6>
+                                        <p>Models are trained on NVIDIA V100 GPUs (p3.2xlarge instances). Bayesian optimization is used for automated hyperparameter tuning.</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="text-center p-3">
+                                        <div class="feature-icon">
+                                            <i class="fas fa-rocket"></i>
+                                        </div>
+                                        <h6>Deployment</h6>
+                                        <p>Models are deployed to SageMaker endpoints for real-time inference (<500 ms latency). Lighter, quantized versions (INT8) are deployed to edge nodes using TensorFlow Lite.</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="text-center p-3">
+                                        <div class="feature-icon">
+                                            <i class="fas fa-sync-alt"></i>
+                                        </div>
+                                        <h6>Monitoring & Retraining</h6>
+                                        <p>We use Kolmogorov-Smirnov tests to detect model drift. Models are retrained weekly with new data, ensuring they continuously adapt to changing field conditions.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Offerings & Pricing -->
+    <section id="services" class="py-5">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Service Offerings & Pricing Model</h2>
+            
+            <div class="row">
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card pricing-card h-100">
+                        <div class="card-body p-4">
+                            <h5 class="text-center">Tier 1: Basic</h5>
+                            <p class="text-center text-muted">Small Commercial Farms, Cooperatives</p>
+                            <div class="text-center my-4">
+                                <div class="price">$25-50<span>/hectare/year</span></div>
+                            </div>
+                            <ul class="list-unstyled">
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Monthly RGB drone flights</li>
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Basic crop health maps</li>
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Core soil moisture monitoring</li>
+                            </ul>
+                            <div class="text-center mt-4">
+                                <button class="btn btn-outline-success">Select Plan</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card pricing-card featured h-100">
+                        <div class="card-body p-4">
+                            <h5 class="text-center">Tier 2: Advanced</h5>
+                            <p class="text-center text-muted">Medium-to-Large Commercial Farms</p>
+                            <div class="text-center my-4">
+                                <div class="price">$75-150<span>/hectare/year</span></div>
+                            </div>
+                            <ul class="list-unstyled">
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Bi-weekly multispectral flights</li>
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Advanced analytics (disease/pest alerts)</li>
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i> AI-powered irrigation schedules</li>
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i> All Tier 1 features</li>
+                            </ul>
+                            <div class="text-center mt-4">
+                                <button class="btn btn-agri">Select Plan</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card pricing-card h-100">
+                        <div class="card-body p-4">
+                            <h5 class="text-center">Tier 3: Premium</h5>
+                            <p class="text-center text-muted">Large Enterprises, Government Projects</p>
+                            <div class="text-center my-4">
+                                <div class="price">$200-400<span>/hectare/year</span></div>
+                            </div>
+                            <ul class="list-unstyled">
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Weekly multispectral/thermal/LiDAR</li>
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Automated VRI, pump control</li>
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i> API integration</li>
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Custom AI models</li>
+                                <li class="mb-2"><i class="fas fa-check text-success me-2"></i> All Tier 1 & 2 features</li>
+                            </ul>
+                            <div class="text-center mt-4">
+                                <button class="btn btn-outline-success">Select Plan</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-5">
+                <div class="col-12" data-aos="fade-up">
+                    <div class="alert alert-info">
+                        <h5><i class="fas fa-info-circle me-2"></i> Alternative Models</h5>
+                        <p>We also offer Pay-per-Flight services ($100-300/flight), Hardware-as-a-Service (HaaS), and Data-as-a-Service (DaaS) for institutional clients.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Implementation Strategy & Roadmap -->
+    <section id="roadmap" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Implementation Strategy & Roadmap</h2>
+            
+            <div class="timeline">
+                <div class="timeline-item" data-aos="fade-right">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h5>Phase 1: Technology Development & Testing (Months 1-6)</h5>
+                        <p><strong>Deliverables:</strong> Finalized tech stack, MVP platform, establishment of 10 research farm sites for data collection, initial AI model training.</p>
+                        <p><strong>Milestone:</strong> Successful end-to-end system test with <2 sec data latency and verified sensor accuracy.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item" data-aos="fade-left">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h5>Phase 2: Pilot Program (Months 7-12)</h5>
+                        <p><strong>Deliverables:</strong> Deployment on 20 paying pilot farms, comprehensive training program for farmers, refined AI models with >90% accuracy targets met.</p>
+                        <p><strong>Milestone:</strong> Secure 5 long-term contracts from satisfied pilot customers and gather powerful case study data.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item" data-aos="fade-right">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h5>Phase 3: Commercial Launch (Months 13-18)</h5>
+                        <p><strong>Deliverables:</strong> Launch of full sales and marketing operations from 3 regional hubs, hiring of 20+ field and support staff, finalization of service packages and SLAs.</p>
+                        <p><strong>Milestone:</strong> Onboard 50 commercial customers, covering 2,500+ hectares.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item" data-aos="fade-left">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h5>Phase 4: Scale & Optimization (Months 19-24)</h5>
+                        <p><strong>Deliverables:</strong> Expansion to the Western Desert region, launch of a franchise model framework, development of new AI features (e.g., carbon tracking).</p>
+                        <p><strong>Milestone:</strong> Reach 200+ customers, covering over 15,000 hectares under management.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Financial Projections -->
+    <section id="financials" class="py-5">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Financial Projections</h2>
+            
+            <div class="row mb-5">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <div class="card feature-card">
+                        <div class="card-body">
+                            <h5><i class="fas fa-coins me-2"></i> Capital Requirements</h5>
+                            <p>We are seeking <strong>$5,000,000</strong> in seed funding for the first 18-24 months of operation, allocated as follows:</p>
+                            <div class="chart-container">
+                                <canvas id="fundingAllocationChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="card feature-card">
+                        <div class="card-body">
+                            <h5><i class="fas fa-chart-line me-2"></i> Five-Year Financial Forecast</h5>
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Metric</th>
+                                            <th>Year 1</th>
+                                            <th>Year 2</th>
+                                            <th>Year 3</th>
+                                            <th>Year 4</th>
+                                            <th>Year 5</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Customers</td>
+                                            <td>50</td>
+                                            <td>200</td>
+                                            <td>600</td>
+                                            <td>1,200</td>
+                                            <td>2,000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Hectares Served</td>
+                                            <td>2,500</td>
+                                            <td>15,000</td>
+                                            <td>50,000</td>
+                                            <td>120,000</td>
+                                            <td>200,000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Revenue ($)</td>
+                                            <td>1.8M</td>
+                                            <td>6.5M</td>
+                                            <td>15M</td>
+                                            <td>30M</td>
+                                            <td>50M</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Gross Margin</td>
+                                            <td>55%</td>
+                                            <td>65%</td>
+                                            <td>70%</td>
+                                            <td>73%</td>
+                                            <td>75%</td>
+                                        </tr>
+                                        <tr>
+                                            <td>EBITDA ($)</td>
+                                            <td>(2.1M)</td>
+                                            <td>0.8M</td>
+                                            <td>5.25M</td>
+                                            <td>13.5M</td>
+                                            <td>25M</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="alert alert-success mt-3">
+                                <strong>Break-even Point:</strong> Projected for Month 22.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-12" data-aos="fade-up">
+                    <div class="card feature-card">
+                        <div class="card-body">
+                            <h5><i class="fas fa-chart-pie me-2"></i> Market Opportunity (TAM-SAM-SOM)</h5>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="text-center p-3">
+                                        <h4>TAM</h4>
+                                        <p class="text-muted">Total Addressable Market</p>
+                                        <div class="stat-number" style="font-size: 2.5rem;">$21B</div>
+                                        <p>Global precision agriculture market by 2030</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="text-center p-3">
+                                        <h4>SAM</h4>
+                                        <p class="text-muted">Serviceable Addressable Market</p>
+                                        <div class="stat-number" style="font-size: 2.5rem;">$57M</div>
+                                        <p>Annual market value in Egypt for our services</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="text-center p-3">
+                                        <h4>SOM</h4>
+                                        <p class="text-muted">Serviceable Obtainable Market</p>
+                                        <div class="stat-number" style="font-size: 2.5rem;">$50M</div>
+                                        <p>Our target revenue by Year 5 (87% of SAM)</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Risk Analysis & Mitigation -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Risk Analysis & Mitigation</h2>
+            
+            <div class="row">
+                <div class="col-md-6 mb-4" data-aos="fade-right">
+                    <div class="tech-card">
+                        <h5><i class="fas fa-exclamation-triangle me-2"></i> Market Risk</h5>
+                        <p><strong>Slow Adoption:</strong> Farmers prove more resistant to tech change than anticipated, lengthening the sales cycle and slowing revenue growth.</p>
+                        <div class="risk-meter mb-2">
+                            <div class="risk-level risk-medium"></div>
+                        </div>
+                        <p><strong>Mitigation Strategy:</strong></p>
+                        <ul>
+                            <li>Offer paid, short-term pilot programs with a guaranteed ROI clause</li>
+                            <li>Focus sales efforts on respected "lighthouse" farms in each region</li>
+                            <li>Target cooperative managers who can make decisions affecting hundreds of farmers</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4" data-aos="fade-left">
+                    <div class="tech-card">
+                        <h5><i class="fas fa-microchip me-2"></i> Technology Risk</h5>
+                        <p><strong>AI Model Underperformance:</strong> Models do not achieve the targeted accuracy (>90%) in diverse, real-world field conditions, damaging credibility.</p>
+                        <div class="risk-meter mb-2">
+                            <div class="risk-level risk-medium"></div>
+                        </div>
+                        <p><strong>Mitigation Strategy:</strong></p>
+                        <ul>
+                            <li>Ensure initial research and pilot farms cover a wide range of conditions</li>
+                            <li>Initially, all AI recommendations will be validated by an in-house agronomist</li>
+                            <li>Be transparent with early customers that models are in a continuous learning phase</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4" data-aos="fade-right">
+                    <div class="tech-card">
+                        <h5><i class="fas fa-cogs me-2"></i> Operational Risk</h5>
+                        <p><strong>Scalability of Field Operations:</strong> Inability to hire and train qualified drone pilots and technicians fast enough to keep up with customer growth.</p>
+                        <div class="risk-meter mb-2">
+                            <div class="risk-level risk-high"></div>
+                        </div>
+                        <p><strong>Mitigation Strategy:</strong></p>
+                        <ul>
+                            <li>Create a certified training program in partnership with agricultural universities</li>
+                            <li>Use AI-powered route planning software to maximize efficiency of field teams</li>
+                            <li>Develop a tiered support system, where simpler issues are handled remotely</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4" data-aos="fade-left">
+                    <div class="tech-card">
+                        <h5><i class="fas fa-balance-scale me-2"></i> Regulatory Risk</h5>
+                        <p><strong>Drone Regulations:</strong> The Egyptian government introduces more stringent regulations on BVLOS drone flights, limiting operational efficiency.</p>
+                        <div class="risk-meter mb-2">
+                            <div class="risk-level risk-medium"></div>
+                        </div>
+                        <p><strong>Mitigation Strategy:</strong></p>
+                        <ul>
+                            <li>Retain a government affairs advisor to maintain open communication channels</li>
+                            <li>Invest in drones and software with features like geofencing and remote ID</li>
+                            <li>Develop operational models that are efficient even under current line-of-sight regulations</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Exit Strategy -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Exit Strategy</h2>
+            <p class="mb-5" data-aos="fade-up">Our primary objective is to build a company with enduring value. We envision several exit pathways for our investors over a 5-10 year horizon:</p>
+            
+            <div class="row">
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card feature-card h-100">
+                        <div class="card-body text-center">
+                            <div class="feature-icon">
+                                <i class="fas fa-handshake"></i>
+                            </div>
+                            <h5>Strategic Acquisition</h5>
+                            <p class="text-muted">(5-7 Years)</p>
+                            <p>The most likely scenario involves acquisition by a global agricultural machinery company (e.g., John Deere, AGCO, CNH Industrial) or a major technology firm (e.g., Siemens, Bosch) seeking to enter or dominate the MENA AgriTech market.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card feature-card h-100">
+                        <div class="card-body text-center">
+                            <div class="feature-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h5>Initial Public Offering</h5>
+                            <p class="text-muted">(7-10 Years)</p>
+                            <p>Following a track record of sustained growth and profitability, an IPO on the Egyptian Exchange (EGX) or a major international exchange would be pursued to provide greater liquidity.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card feature-card h-100">
+                        <div class="card-body text-center">
+                            <div class="feature-icon">
+                                <i class="fas fa-money-bill-wave"></i>
+                            </div>
+                            <h5>Private Equity Sale</h5>
+                            <p class="text-muted">(6-8 Years)</p>
+                            <p>A sale to a growth-equity fund specializing in agriculture, water, or sustainable technology.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="alert alert-info mt-4" data-aos="fade-up">
+                <h5><i class="fas fa-lightbulb me-2"></i> Value Maximization Strategy</h5>
+                <p>We will maximize enterprise value by focusing on building a strong brand, securing proprietary IP in our AI models, establishing long-term customer contracts, and expanding our profitable, recurring revenue base.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Contact Us</h2>
+            <div class="row">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <div class="card feature-card">
+                        <div class="card-body">
+                            <h5><i class="fas fa-envelope me-2"></i> Get In Touch</h5>
+                            <p>For investment inquiries, partnership opportunities, or more information about AgriVision Egypt, please contact us:</p>
+                            <ul class="list-unstyled">
+                                <li class="mb-3"><i class="fas fa-map-marker-alt me-2 text-success"></i> <strong>Address:</strong> Cairo Technology Park, Cairo, Egypt</li>
+                                <li class="mb-3"><i class="fas fa-envelope me-2 text-success"></i> <strong>Email:</strong> info@agrivision-egypt.com</li>
+                                <li class="mb-3"><i class="fas fa-phone me-2 text-success"></i> <strong>Phone:</strong> +20 2 1234 5678</li>
+                            </ul>
+                            <div class="social-icons mt-4">
+                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="card feature-card">
+                        <div class="card-body">
+                            <h5><i class="fas fa-paper-plane me-2"></i> Send Us a Message</h5>
+                            <form>
+                                <div class="mb-3">
+                                    <input type="text" class="form-control" placeholder="Your Name">
+                                </div>
+                                <div class="mb-3">
+                                    <input type="email" class="form-control" placeholder="Your Email">
+                                </div>
+                                <div class="mb-3">
+                                    <input type="text" class="form-control" placeholder="Subject">
+                                </div>
+                                <div class="mb-3">
+                                    <textarea class="form-control" rows="4" placeholder="Your Message"></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-agri w-100">Send Message</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5>AgriVision Egypt</h5>
+                    <p>Transforming Egyptian agriculture through integrated aerial-to-ground intelligence, empowering farmers with data-driven insights for sustainable productivity.</p>
+                    <div class="social-icons mt-3">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <h5>Quick Links</h5>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#overview">Overview</a></li>
+                        <li><a href="#market">Market</a></li>
+                        <li><a href="#technology">Technology</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <h5>Services</h5>
+                    <ul class="footer-links">
+                        <li><a href="#services">Tier 1: Basic</a></li>
+                        <li><a href="#services">Tier 2: Advanced</a></li>
+                        <li><a href="#services">Tier 3: Premium</a></li>
+                        <li><a href="#services">Custom Solutions</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Subscribe to Our Newsletter</h5>
+                    <p>Stay updated with our latest news and offerings.</p>
+                    <form class="mt-3">
+                        <div class="input-group">
+                            <input type="email" class="form-control" placeholder="Your Email">
+                            <button class="btn btn-agri" type="button">Subscribe</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 AgriVision Egypt. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- AOS Animation JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Ownership Chart
+        const ownershipCtx = document.getElementById('ownershipChart').getContext('2d');
+        const ownershipChart = new Chart(ownershipCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Founders', 'Angel Investors', 'Employee Stock Option Pool'],
+                datasets: [{
+                    data: [60, 25, 15],
+                    backgroundColor: [
+                        '#2e7d32',
+                        '#81c784',
+                        '#ff9800'
+                    ],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }
+        });
+        
+        // Market Growth Chart
+        const marketGrowthCtx = document.getElementById('marketGrowthChart').getContext('2d');
+        const marketGrowthChart = new Chart(marketGrowthCtx, {
+            type: 'line',
+            data: {
+                labels: ['2024', '2025', '2026', '2027', '2028', '2029', '2030'],
+                datasets: [{
+                    label: 'Egyptian AgriTech Market (USD Billions)',
+                    data: [3.5, 4.2, 5.0, 5.6, 6.0, 6.1, 6.28],
+                    borderColor: '#2e7d32',
+                    backgroundColor: 'rgba(46, 125, 50, 0.1)',
+                    borderWidth: 3,
+                    tension: 0.3,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        ticks: {
+                            callback: function(value) {
+                                return '$' + value + 'B';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+        
+        // AI Models Chart
+        const aiModelsCtx = document.getElementById('aiModelsChart').getContext('2d');
+        const aiModelsChart = new Chart(aiModelsCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Crop Health Analysis', 'Soil Moisture Prediction', 'Irrigation Optimization', 'Yield Prediction'],
+                datasets: [{
+                    label: 'Performance Target',
+                    data: [94, 88, 95, 92],
+                    backgroundColor: '#2e7d32',
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        min: 80,
+                        max: 100,
+                        ticks: {
+                            callback: function(value) {
+                                return value + '%';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+        
+        // Funding Allocation Chart
+        const fundingAllocationCtx = document.getElementById('fundingAllocationChart').getContext('2d');
+        const fundingAllocationChart = new Chart(fundingAllocationCtx, {
+            type: 'pie',
+            data: {
+                labels: ['Technology & Product Development', 'Operations & Hardware Inventory', 'Sales & Marketing', 'General & Administrative'],
+                datasets: [{
+                    data: [40, 30, 20, 10],
+                    backgroundColor: [
+                        '#2e7d32',
+                        '#81c784',
+                        '#ff9800',
+                        '#795548'
+                    ],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }
+        });
+        
+        // Financial Projections Chart
+        const financialCtx = document.createElement('canvas');
+        const financialSection = document.querySelector('#financials .row');
+        const financialCard = document.createElement('div');
+        financialCard.className = 'col-12 mt-4';
+        financialCard.setAttribute('data-aos', 'fade-up');
+        
+        const financialCardInner = document.createElement('div');
+        financialCardInner.className = 'card feature-card';
+        
+        const financialCardBody = document.createElement('div');
+        financialCardBody.className = 'card-body';
+        
+        const financialTitle = document.createElement('h5');
+        financialTitle.innerHTML = '<i class="fas fa-chart-line me-2"></i> Revenue Projection (5 Years)';
+        
+        financialCardBody.appendChild(financialTitle);
+        financialCardBody.appendChild(financialCtx);
+        financialCardInner.appendChild(financialCardBody);
+        financialCard.appendChild(financialCardInner);
+        financialSection.appendChild(financialCard);
+        
+        const financialChart = new Chart(financialCtx, {
+            type: 'line',
+            data: {
+                labels: ['Year 1', 'Year 2', 'Year 3', 'Year 4', 'Year 5'],
+                datasets: [{
+                    label: 'Revenue (USD Millions)',
+                    data: [1.8, 6.5, 15, 30, 50],
+                    borderColor: '#2e7d32',
+                    backgroundColor: 'rgba(46, 125, 50, 0.1)',
+                    borderWidth: 3,
+                    tension: 0.3,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value) {
+                                return '$' + value + 'M';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
