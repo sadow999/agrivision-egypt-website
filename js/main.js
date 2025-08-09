@@ -162,8 +162,13 @@ financialCardBody.className = 'card-body';
 const financialTitle = document.createElement('h5');
 financialTitle.innerHTML = '<i class="fas fa-chart-line me-2"></i> Revenue Projection (5 Years)';
 
+// Create a container for the chart with specific class
+const chartContainer = document.createElement('div');
+chartContainer.className = 'chart-container chart-container-revenue';
+
 financialCardBody.appendChild(financialTitle);
-financialCardBody.appendChild(financialCtx);
+chartContainer.appendChild(financialCtx);
+financialCardBody.appendChild(chartContainer);
 financialCardInner.appendChild(financialCardBody);
 financialCard.appendChild(financialCardInner);
 financialSection.appendChild(financialCard);
@@ -179,7 +184,9 @@ const financialChart = new Chart(financialCtx, {
             backgroundColor: 'rgba(46, 125, 50, 0.1)',
             borderWidth: 3,
             tension: 0.3,
-            fill: true
+            fill: true,
+            pointRadius: 5, // Larger points for better visibility
+            pointHoverRadius: 7
         }]
     },
     options: {
@@ -188,6 +195,15 @@ const financialChart = new Chart(financialCtx, {
         plugins: {
             legend: {
                 display: false
+            },
+            tooltip: {
+                mode: 'index',
+                intersect: false,
+                callbacks: {
+                    label: function(context) {
+                        return '$' + context.parsed.y + 'M';
+                    }
+                }
             }
         },
         scales: {
@@ -196,8 +212,35 @@ const financialChart = new Chart(financialCtx, {
                 ticks: {
                     callback: function(value) {
                         return '$' + value + 'M';
-                    }
+                    },
+                    font: {
+                        size: 11
+                    },
+                    padding: 5
+                },
+                grid: {
+                    drawBorder: false,
+                    color: 'rgba(0, 0, 0, 0.05)'
                 }
+            },
+            x: {
+                grid: {
+                    display: false
+                },
+                ticks: {
+                    font: {
+                        size: 11
+                    },
+                    padding: 5
+                }
+            }
+        },
+        layout: {
+            padding: {
+                top: 10,
+                right: 10,
+                bottom: 10,
+                left: 10
             }
         }
     }
