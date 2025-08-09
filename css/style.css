@@ -333,6 +333,14 @@ body {
     margin-bottom: 30px;
 }
 
+/* Special class for revenue chart */
+.chart-container-revenue {
+    position: relative;
+    height: 180px; /* Much shorter for revenue chart */
+    margin-bottom: 20px;
+    max-width: 100%;
+}
+
 .accordion-button:not(.collapsed) {
     background-color: var(--light-green);
     color: white;
@@ -364,4 +372,5 @@ body {
     .timeline-dot {
         left: 30px;
     }
+
 }
