@@ -1439,62 +1439,81 @@
             }
         });
         
-        // Financial Projections Chart
-        const financialCtx = document.createElement('canvas');
-        const financialSection = document.querySelector('#financials .row');
-        const financialCard = document.createElement('div');
-        financialCard.className = 'col-12 mt-4';
-        financialCard.setAttribute('data-aos', 'fade-up');
-        
-        const financialCardInner = document.createElement('div');
-        financialCardInner.className = 'card feature-card';
-        
-        const financialCardBody = document.createElement('div');
-        financialCardBody.className = 'card-body';
-        
-        const financialTitle = document.createElement('h5');
-        financialTitle.innerHTML = '<i class="fas fa-chart-line me-2"></i> Revenue Projection (5 Years)';
-        
-        financialCardBody.appendChild(financialTitle);
-        financialCardBody.appendChild(financialCtx);
-        financialCardInner.appendChild(financialCardBody);
-        financialCard.appendChild(financialCardInner);
-        financialSection.appendChild(financialCard);
-        
-        const financialChart = new Chart(financialCtx, {
-            type: 'line',
-            data: {
-                labels: ['Year 1', 'Year 2', 'Year 3', 'Year 4', 'Year 5'],
-                datasets: [{
-                    label: 'Revenue (USD Millions)',
-                    data: [1.8, 6.5, 15, 30, 50],
-                    borderColor: '#2e7d32',
-                    backgroundColor: 'rgba(46, 125, 50, 0.1)',
-                    borderWidth: 3,
-                    tension: 0.3,
-                    fill: true
-                }]
+        // Revenue Projection Chart (using inline canvas)
+const revenueCtx = document.getElementById('revenueChart').getContext('2d');
+const revenueChart = new Chart(revenueCtx, {
+    type: 'line',
+    data: {
+        labels: ['Year 1', 'Year 2', 'Year 3', 'Year 4', 'Year 5'],
+        datasets: [{
+            label: 'Revenue (USD Millions)',
+            data: [1.8, 6.5, 15, 30, 50],
+            borderColor: '#2e7d32',
+            backgroundColor: 'rgba(46, 125, 50, 0.1)',
+            borderWidth: 3,
+            tension: 0.3,
+            fill: true,
+            pointRadius: 5,
+            pointHoverRadius: 7
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                display: false
             },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: false
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        ticks: {
-                            callback: function(value) {
-                                return '$' + value + 'M';
-                            }
-                        }
+            tooltip: {
+                mode: 'index',
+                intersect: false,
+                callbacks: {
+                    label: function(context) {
+                        return '$' + context.parsed.y + 'M';
                     }
                 }
             }
-        });
+        },
+        scales: {
+            y: {
+                beginAtZero: true,
+                ticks: {
+                    callback: function(value) {
+                        return '$' + value + 'M';
+                    },
+                    font: {
+                        size: 11
+                    },
+                    padding: 5
+                },
+                grid: {
+                    drawBorder: false,
+                    color: 'rgba(0, 0, 0, 0.05)'
+                }
+            },
+            x: {
+                grid: {
+                    display: false
+                },
+                ticks: {
+                    font: {
+                        size: 11
+                    },
+                    padding: 5
+                }
+            }
+        },
+        layout: {
+            padding: {
+                top: 10,
+                right: 10,
+                bottom: 10,
+                left: 10
+            }
+        }
+    }
+});
     </script>
 </body>
+
 </html>
